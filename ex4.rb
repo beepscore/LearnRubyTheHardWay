@@ -10,6 +10,9 @@ carpool_capacity = cars_driven * space_in_a_car
 average_passengers_per_car = passengers / cars_driven
 
 puts "There are #{cars} cars available."
+# alternatively, can use format specifier similar to Python but with [ ]
+# instead of ( )
+puts "There are %s cars available." % cars
 puts "There are only #{drivers} drivers available."
 puts "There will be #{cars_not_driven} empty cars today."
 puts "We can transport #{carpool_capacity} people today."
