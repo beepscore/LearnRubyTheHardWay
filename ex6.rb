@@ -18,12 +18,9 @@ puts "I said: #{x}."
 puts "I also said: '#{y}'."
 
 hilarious = false
-# put string in string #5 (converts bool to string)
+# insert string value of bool hilarious in string
 joke_evaluation = "Isn't that joke so funny?! #{hilarious}"
-
-# joke_evaluation contains format specifier, 
-# so it works with % hilarious
-puts joke_evaluation % hilarious
+puts joke_evaluation
 
 w = "This is the left side of..."
 e = "a string with a right side."
