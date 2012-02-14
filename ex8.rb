@@ -3,12 +3,13 @@
 formatter = "%s %s %s %s"
 
 puts formatter % [1, 2, 3, 4]
-# output surrounds each word with ' '
+# output doesn't have surrounding "" or ''
+# in Python, output has ' ' surrounding each word
 puts formatter % ["one", "two", "three", "four"]
 
 puts formatter % [true, false, false, true]
 
-# substitues 4 formatter string arguments into first formatter string
+# substitutes 4 formatter string arguments into first formatter string
 puts formatter % [formatter, formatter, formatter, formatter]
 
 puts formatter % [
