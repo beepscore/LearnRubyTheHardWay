@@ -10,7 +10,7 @@ puts "Your third variable is: #{third}"
 
 print "Please enter a fourth value: "
 # unlike previous exercise, must specify STDIN
-# without STDIN, I think ruby tries to use parameter "first" as a file name to read from a file.
+# default gets method treats first ARGV argument as a file name to read input from a file.
 fourthVariable = STDIN.gets.chomp()
 
 puts "Your fourth variable is #{fourthVariable}"
