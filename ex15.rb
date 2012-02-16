@@ -11,10 +11,13 @@ filename = ARGV.first
 
 prompt = "> "
 # text_file is a reference to the file
+# http://ruby-doc.org/core-1.9.3/File.html
 text_file = File.open(filename)
 
 puts "Here's your file: #{filename}"
 puts text_file.read()
+# http://ruby-doc.org/core-1.9.3/IO.html#method-i-close
+text_file.close()
 
 puts "I'll also ask you to type it again:"
 print prompt
@@ -24,3 +27,4 @@ filename_again = STDIN.gets.chomp()
 text_file_again = File.open(filename_again)
 
 puts text_file_again.read()
+text_file_again.close()
