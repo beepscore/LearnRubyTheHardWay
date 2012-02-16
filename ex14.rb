@@ -1,7 +1,14 @@
 #!usr/bin/env ruby
 
-# ARGV is argument variable
+# ARGV is the argument variable, an array.
+# In ruby, global variable $0 is the program name.
+# ARGV[0] is the first argument.
+# .first returns the first element of an array
+# ARGV.first == ARGV[0]
+# NOTE: In C, ARGV[0] is the program name and ARGV[1] is the first argument.
+# http://ruby-doc.org/docs/ProgrammingRuby/html/rubyworld.html
 user = ARGV.first
+
 prompt = '>'
 
 puts "Hi #{user}, I'm the #{$0} script."
