@@ -1,4 +1,4 @@
-#!usr/bin/env ruby
+#!/usr/bin/env ruby
 
 # ARGV is the argument variable, an array.
 # In ruby, global variable $0 is the program name.
