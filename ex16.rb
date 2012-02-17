@@ -14,11 +14,14 @@ STDIN.gets
 
 puts "Opening the file..."
 # open filename in write mode
+#  'w' Write-only, truncates existing file to zero length or creates a new file for writing
+#  http://rubylearning.com/satishtalim/read_write_files.html
 # open(filename) with no mode argument defaults to read-only for safety.
 target = File.open(filename, 'w')
 
-puts "Truncating the file. Goodbye!"
-target.truncate(target.size)
+# File.open(filename, 'w') truncates, so we don't need explcit truncate
+#puts "Truncating the file. Goodbye!"
+#target.truncate(target.size)
 
 puts "Now I'm going to ask you for three lines."
 
