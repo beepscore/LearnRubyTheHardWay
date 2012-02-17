@@ -23,6 +23,7 @@ output.write(indata)
 
 puts "Alright, all done."
 
+# http://stackoverflow.com/questions/4795447/rubys-file-open-and-the-need-for-f-close
 output.close()
 
 #input.close()
