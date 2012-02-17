@@ -28,12 +28,9 @@ print "line 3: "; line3 = STDIN.gets.chomp()
 
 puts "I'm going to write these to the file."
 
-target.write(line1)
-target.write("\n")
-target.write(line2)
-target.write("\n")
-target.write(line3)
-target.write("\n")
+# either format style works
+#target.write("#{line1}\n#{line2}\n#{line3}\n")
+target.write("%s\n%s\n%s\n" % [line1, line2, line3])
 
 puts "And finally, we close it."
 target.close()
