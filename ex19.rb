@@ -21,3 +21,13 @@ cheese_and_crackers(10 + 20, 5 + 6)
 
 puts "And we can combine the two, variables and math:"
 cheese_and_crackers(amount_of_cheese + 100, amount_of_crackers + 1000)
+
+def schmizer(word)
+  # can improve method by deleting up to first vowel.
+  trimmed_word = word[2, word.length()]
+  # in ruby, method evaluates to last line. Don't need explicit return
+  "schm" + trimmed_word
+end
+
+puts schmizer("pretzel")
+puts schmizer("diamond")
