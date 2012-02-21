@@ -5,7 +5,6 @@ def add(a, b)
   a + b
 end
 
-
 def subtract(a, b)
   puts "SUBTRACTING #{a} - #{b}"
   a - b
