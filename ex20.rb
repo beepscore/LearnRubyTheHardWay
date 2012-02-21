@@ -13,6 +13,8 @@ end
 
 def rewind(f)
   # set the file pointer to the beginning of the file
+  # SEEK_SET: is a constant
+  # http://ruby-doc.org/core-1.9.3/IO.html
   f.seek(0, IO::SEEK_SET)
 end
 
@@ -21,6 +23,7 @@ def print_a_line(line_count, f)
   puts "#{line_count} #{f.readline()}"
 end
 
+# File is the only standard subclass of IO
 current_file = File.open(input_file)
 
 puts "First let's print the whole file:"
