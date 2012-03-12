@@ -29,6 +29,7 @@ def secret_formula(started)
 end
 
 start_point = 10000
+# assign three variables from the array returned by secret_formula()
 beans, jars, crates = secret_formula(start_point)
 
 puts "With a starting point of: #{start_point}"
