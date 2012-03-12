@@ -23,7 +23,7 @@ module Ex25
   end
 
   def self.sort_sentence(sentence)
-    # Takes in a full sentence and teturns the sorted words.
+    # Takes in a full sentence and returns the sorted words.
     words = break_words(sentence)
     sort_words(words)
   end
