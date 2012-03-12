@@ -3,12 +3,12 @@ module Ex25
   # This function will break up words for us.
   def break_words(stuff)
     words = stuff.split(' ')
-    return words
+    words
   end
 
   # Sorts the words.
   def sort_words(words)
-    return words.sort()
+    words.sort()
   end
 
   # Prints the first word after popping it off.
@@ -29,7 +29,7 @@ module Ex25
   # Takes in a full sentence and returns the sorted words.
   def sort_sentence(sentence)
     words = break_words(sentence)
-    return sort_words(words)
+    sort_words(words)
   end
 
   # Puts the first and last words of the sentence.
