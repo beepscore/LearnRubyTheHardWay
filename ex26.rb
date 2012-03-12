@@ -51,7 +51,7 @@ end
 include Ex25
 
 puts "Let's practice everything."
-puts 'You\'d need to know \'bout escapes with \\ that do \n newlines and \t tabs.'
+puts "You\'d need to know \'bout escapes with \\ that do \n newlines and \t tabs."
 
 poem = <<POEM
 \tThe lovely world
@@ -78,7 +78,7 @@ def secret_formula(started)
 end
 
 start_point = 10000
-# assign three variables from the array returned by  secret_formula()
+# assign three variables from the array returned by secret_formula()
 beans, jars, crates = secret_formula(start_point)
 
 puts "With a starting point of: %d" % start_point
