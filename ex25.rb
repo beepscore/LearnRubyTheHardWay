@@ -11,7 +11,7 @@ module Ex25
   end
 
   def self.print_first_word(words)
-    # Prints the first workd and shifts the others down by one.
+    # Prints the first word and shifts the others down by one.
     word = words.shift()
     puts word
   end
