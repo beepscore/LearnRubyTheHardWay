@@ -11,14 +11,14 @@ module Ex25
     words.sort()
   end
 
-  # Prints the first word after popping it off.
+  # Prints the first word and shifts the others down by one.
   def puts_first_word(words)
     # http://www.ruby-doc.org/core-1.9.3/Array.html#method-i-shift
     word = words.shift()
     puts word
   end
 
-  # Prints the last word after popping it off.
+  # Prints the last word after popping it off the end.
   def puts_last_word(words)
     # pop with no argument pops last element
     # http://www.ruby-doc.org/core-1.9.3/Array.html#method-i-pop
