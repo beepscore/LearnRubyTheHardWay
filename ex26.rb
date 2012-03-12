@@ -90,7 +90,7 @@ puts "We can also do that this way:"
 puts "We'd have %d beans, %d jars, and %d crabapples." % secret_formula(start_point)
 
 
-sentence = "All god\tthings come to those who weight."
+sentence = "All good things come to those who wait."
 
 words = Ex25.break_words(sentence)
 sorted_words = Ex25.sort_words(words)
