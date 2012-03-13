@@ -3,7 +3,7 @@
 # http://ruby-doc.org/core-1.9.3/Range.html
 
 def configure_array(number_of_elements, delta)
-  my_range = Range.new(0, number_of_elements, exclusive=true)
+  my_range = Range.new(0, number_of_elements, true)
   numbers = []
   for i in my_range
     puts "At the top i is #{i}"
@@ -20,7 +20,7 @@ def configure_array(number_of_elements, delta)
 end
 
 def configure_array_no_incrementor(number_of_elements)
-  my_range = Range.new(0, number_of_elements, exclusive=true)
+  my_range = Range.new(0, number_of_elements, true)
   numbers = []
   for i in my_range
     puts "At the top i is #{i}"
@@ -35,7 +35,7 @@ def configure_array_no_incrementor(number_of_elements)
 end
 
 def configure_array_step(number_of_elements, delta)
-  my_range = Range.new(0, number_of_elements, exclusive=true)
+  my_range = Range.new(0, number_of_elements, true)
   numbers = []
   my_range.step(delta) { |range_element|
     puts "At the top range_element is #{range_element}"
