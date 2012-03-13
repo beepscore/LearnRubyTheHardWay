@@ -23,6 +23,7 @@ end
 elements = []
 
 # then use a range object to do 0 to 5 counts
+# http://ruby-doc.org/core-1.9.3/Range.html
 for i in (0..5)
   puts "Adding #{i} to the list."
   # push is a function that arrays understand
@@ -33,3 +34,10 @@ end
 for i in elements
   puts "Element was: #{i}"
 end
+
+# extra credit- assign a range directly to array elements
+# I thought about using first(n) with n equal to the range length. Didn't see a method to get range length.
+# http://stackoverflow.com/questions/191329/correct-way-to-populate-an-array-with-a-range-in-ruby
+my_range = (0..5)
+my_elements = my_range.to_a
+puts "my_elements: #{my_elements}"
