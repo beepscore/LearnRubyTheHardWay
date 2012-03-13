@@ -1,12 +1,12 @@
 #!/usr/bin/env ruby
 
-def configure_array(number_of_elements)
+def configure_array(number_of_elements, delta)
   i = 0
   numbers = []
   while i < number_of_elements
     puts "At the top i is #{i}"
     numbers.push(i)
-    i = i + 1
+    i = i + delta
     puts "Numbers now: #{numbers}"
     puts "At the bottom i is #{i}"
   end
@@ -17,6 +17,6 @@ def configure_array(number_of_elements)
   end
 end
 
-configure_array(6)
-configure_array(3)
-configure_array(11)
+configure_array(6, 1)
+configure_array(3, 2)
+configure_array(11, 3)
