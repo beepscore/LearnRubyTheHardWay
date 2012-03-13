@@ -38,6 +38,7 @@ end
 # extra credit- assign a range directly to array elements
 # I thought about using first(n) with n equal to the range length. Didn't see a method to get range length.
 # http://stackoverflow.com/questions/191329/correct-way-to-populate-an-array-with-a-range-in-ruby
+# http://www.ruby-doc.org/core-1.9.3/Array.html#method-i-to_a
 my_range = (0..5)
 my_elements = my_range.to_a
 puts "my_elements: #{my_elements}"
