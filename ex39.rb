@@ -18,8 +18,13 @@ puts "There we go: #{stuff}"
 
 puts "Let's do some things with stuff."
 
+# second element. ruby array is 0 based.
 puts stuff[1]
+# last element. Negative index starts at end [-1]
 puts stuff[-1] # whoa! fancy
+# pop last element from array and return it
 puts stuff.pop()
+# return a string of stuff elements joined by ' '
 puts stuff.join(' ') # what? cool!
+# return element at index 3 and 5 joined by '#'
 puts stuff.values_at(3,5).join('#') # super stellar!
