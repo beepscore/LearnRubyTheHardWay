@@ -49,6 +49,10 @@ def bear_room()
       dead("The bear giets pissed off and chews your leg off.")
     elsif ((next_move == 3 or
             next_move == "open door") and 
+            not bear_moved)
+      puts "The bear is in the way. You can't open the door." 
+    elsif ((next_move == 3 or
+            next_move == "open door") and 
             bear_moved)
       gold_room()
     else
@@ -69,7 +73,7 @@ def cthulhu_room()
   elsif next_move.downcase.include? "head"
     dead("Well that was tasty!")
   else
-    cthulu_room()
+    cthulhu_room()
   end
 end
 
