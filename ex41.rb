@@ -1,5 +1,7 @@
 #!/usr/bin/env ruby
 
+require 'pp'
+
 def prompt()
   print "> "
 end
@@ -69,19 +71,51 @@ def laser_weapon_armory()
   puts "and you need the code to get the bomb out. If you get the code"
   puts "wrong 10 times then the lock closes forever and you can't get the bomb. The code is 3 digits."
 
-  code = "%s%s%s" % [rand(9)+1, rand(9)+1, rand(9)+1]
+  # code = "%s%s%s" % [rand(9)+1, rand(9)+1, rand(9)+1]
+  # Make the game easier than instructions say. 
+  # Give the player 10 guesses
+  # Each time they have a (number_of_winning_combinations/1000) chance.
+  number_of_winning_combinations = 100
+  all_combinations = Hash.new()
+  for index in 0..999 do
+    # use each possible 3 digit combination as a key and assign a random number as a value
+    # Then we will sort the key-value pairs by the random values
+    # Then choose the lowest n key-value pairs
+    # I'm pretty sure this selection method avoids a lot of non-random selection bias.
+    # Each key had an equal chance of being assigned its position, so this is random.
+    # rand function may do better with a seed and not restarting each iteration
+    # Probably it could be done more concisely and elegantly.
+    # rand returns an integer greater than or equal to zero, less than argument.
+    # choose a very large argument to reduce the chance of duplicate values.
+    # Ignore small effect of possible duplicates.
+    # ruby will convert a Fixnum to Bignum if necessary
+    # http://stackoverflow.com/questions/535721/ruby-max-integer
+    all_combinations[index] = rand(1000000)
+  end
+
+  # sort all possible combination key-value pairs by randomly assigned value
+  # http://stackoverflow.com/questions/8580497/how-to-get-first-n-elements-from-hash-in-ruby
+  all_combinations_sorted_by_value = Hash[all_combinations.sort_by { |key,value| value }]
+  # get the keys as an array
+  sorted_combinations_keys = all_combinations_sorted_by_value.keys
+  # choose the lowest (number_of_winning_combinations) combinations
+  winning_combinations = sorted_combinations_keys[0...number_of_winning_combinations]
+  # now re-sort winning_combinations in numerical order
+  winning_combinations.sort!
+  puts "winning_combinations"
+  pp winning_combinations
 
   for guesses in 1..10 do 
     print "[keypad]> "
-    guess = gets.chomp()
-    if guess == code
+    guess = gets.chomp().to_i
+    if winning_combinations.include? guess
       break
     else
       puts "BZZZZEDD!"
     end
   end
 
-  if guess == code
+  if winning_combinations.include? guess    
     puts "The container clicks open and the seal breaks, letting gas out."
     puts "You grab the neutron bomb and run as fast as you can to the"
     puts "bridge where you must place it in the right spot."
