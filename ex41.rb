@@ -14,7 +14,7 @@ def death()
 end
 
 def central_corridor()
-  puts "The Gothons of Plante Percal #25 have invaded your ship and destroyed"
+  puts "The Gothons of Planet Percal #25 have invaded your ship and destroyed"
   puts "your entire crew. You are the last surviving member and your last"
   puts "mission is to get the neutron destruct bomb from the Weapons Armory,"
   puts "put it in the bridge, and blow the ship up after getting into an "
@@ -46,7 +46,7 @@ def central_corridor()
     return :death
 
   elsif action == "tell a joke"
-    puts "Locky for you they made you learn Gothon insults in the academy."
+    puts "Lucky for you they made you learn Gothon insults in the academy."
     puts "You tell the one Gothon joke you know:"
     puts "Lbhe zbgure vf fb sng, jura fur fvgf nebhaq gur ubhfr, fur fvgf nebhaq gur ubhfr."
     puts "The Gothon stops, tries not to laugh, then busts out laughing and can't move."
@@ -74,6 +74,7 @@ def laser_weapon_armory()
 
   while guess != code and guesses < 10
     puts "BZZZZEDD!"
+    guesses += 1
     print "[keypad]> "
     guess = gets.chomp()
 
