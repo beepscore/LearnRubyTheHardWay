@@ -169,11 +169,11 @@ ROOMS = {
 }
 
 def runner(map, start)
-  nex_one = start
+  next_one = start
 
   while true
     room = map[next_one]
-    puts "n---------"
+    puts "\n---------"
     next_one = room.call()
   end
 end
