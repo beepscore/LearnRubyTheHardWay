@@ -67,17 +67,17 @@ def laser_weapon_armory()
   puts "neutron bomb in its container. There's a keypad lock on the box"
   puts "and you need the code to get the bomb out. If you get the code"
   puts "wrong 10 times then the lock closes forever and you can't get the bomb. The code is 3 digits."
-  code = "%s%s%s" % [rand(9)+1, rand(9)+1, rand(9)+1]
-  print "[keypad]> "
-  guess = gets.chomp()
-  guesses = 0
 
-  while guess != code and guesses < 10
-    puts "BZZZZEDD!"
-    guesses += 1
+  code = "%s%s%s" % [rand(9)+1, rand(9)+1, rand(9)+1]
+
+  for guesses in 1..10 do 
     print "[keypad]> "
     guess = gets.chomp()
-
+    if guess == code
+      break
+    else
+      puts "BZZZZEDD!"
+    end
   end
 
   if guess == code
@@ -87,7 +87,7 @@ def laser_weapon_armory()
     return :the_bridge
   else
     puts "The lock buzzes one last time and then you hear a sickening"
-    puts "melting sound as the mechanism is fused together"
+    puts "melting sound as the mechanism is fused together."
     puts "You decide to sit there, and finally the Gothons blow up the"
     puts "ship from their ship and you die."
     return :death
