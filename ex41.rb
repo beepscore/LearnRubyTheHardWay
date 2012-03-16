@@ -10,6 +10,7 @@ def death()
            "Such a luser.",
            "I have a small puppy that's better at this."]
   puts quips[rand(quips.length())]
+  # exit with code 1 to indicate player died
   Process.exit(1)
 end
 
@@ -157,10 +158,12 @@ def escape_pod()
     puts "back and see your ship implode then explode lik a"
     puts "bright star, taking out the Gothon ship at the same"
     puts "time. You won!"
+    # exit with code 0 to indicate player won
     Process.exit(0)
   end
 end
 
+# dictionay of method names
 ROOMS = {
   :death => method(:death),
   :central_corridor => method(:central_corridor),
@@ -169,14 +172,23 @@ ROOMS = {
   :escape_pod => method(:escape_pod)
 }
 
+# runner runs the game loop.
+# parameter map is a dictionary of method names
+# parameter start is the initial method name
 def runner(map, start)
   next_one = start
 
   while true
-    room = map[next_one]
     puts "\n---------"
+    # In the map dictionary use next_one as the key to look up a method name.
+    # Assign method name to room.
+    room = map[next_one]
+    # Call the method assigned to room. 
+    # When it returns, assign the return value to next_one.
     next_one = room.call()
+    # Continue while loop
   end
 end
 
+# start the game loop using the ROOMS dictionary in the central corridor.
 runner(ROOMS, :central_corridor)
