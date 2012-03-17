@@ -4,6 +4,8 @@ require 'pp'
 
 class Game
 
+  # initialize a game
+  # parameter start is a label representing the starting location
   def initialize(start)
     @quips = ["You died. You kinda suck at this.",
               "So how's it feel to be dead?",
@@ -23,8 +25,14 @@ class Game
 
     while true
       puts "\n---------"
+
+      # method(next_room) returns a Game method object
+      # method() instantiates a method object
+      # http://ruby-doc.org/core-1.9.3/Object.html#method-i-method
       room = method(next_room)
-      # call the room method and assign the returned value to next_room
+      # call the method named "room"
+      # room.call() returns a symbol of a method name e.g. :central_corridor
+      # Assign the return value to next_room
       next_room = room.call()
     end
   end
@@ -242,5 +250,6 @@ class Game
   end
 end
 
+# new calls initialize method
 a_game = Game.new(:central_corridor)
 a_game.play()
