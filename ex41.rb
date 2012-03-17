@@ -6,6 +6,7 @@ def prompt()
   print "> "
 end
 
+
 def death()
   quips = ["You died. You kinda suck at this.",
            "So how's it feel to be dead?",
@@ -16,25 +17,8 @@ def death()
   Process.exit(1)
 end
 
-def central_corridor()
-  # heredocs can start with << or with <<-
-  # if they start with <<, the ending delimeter must be in column 1.
-  puts <<-CENTRAL_CORRIDOR_HEREDOC
-    The Gothons of Planet Percal #25 have invaded your ship and destroyed
-    your entire crew. You are the last surviving member and your last
-    mission is to get the neutron destruct bomb from the Weapons Armory,
-    put it in the bridge, and blow the ship up after getting into an 
-    escape pod.
 
-    You're running down the central corridor to the Weapons Armory when
-    a Gothon jumps out, red scaly skin, dark grimy teeth, and evil clown costume
-    flowing around his hate filled body. He's blocking the door to the
-    Armory and about to pull a weapon to blast you.
-  CENTRAL_CORRIDOR_HEREDOC
-
-  prompt()
-  action = gets.chomp()
-
+def central_corridor(action)
   if action == "shoot!"
     puts <<-SHOOT_HEREDOC
       Quick on the draw you yank out your blaster and fire it at the Gothon.
@@ -73,15 +57,9 @@ def central_corridor()
   end
 end
 
+
 def laser_weapon_armory()
-  puts <<-LASER_HEREDOC
-    You do a dive roll into the Weapon Armory, crouch and scan the room
-    for more Gothons that might be hiding. It's dead quiet, too quiet.
-    You stand up and run to the far side of the room and find the
-    neutron bomb in its container. There's a keypad lock on the box
-    and you need the code to get the bomb out. If you get the code
-    wrong 10 times then the lock closes forever and you can't get the bomb. The code is 3 digits.
-  LASER_HEREDOC
+
   # code = "%s%s%s" % [rand(9)+1, rand(9)+1, rand(9)+1]
   # Make the game easier than instructions say. 
   # Give the player 10 guesses
@@ -142,19 +120,8 @@ def laser_weapon_armory()
   end
 end
 
-def the_bridge()
-  puts <<-BRIDGE_HEREDOC
-    You burst onto the Bridge with the neutron destruct bomb
-    under your arm and surprise 5 Gothons who are trying to
-    take control of the ship. Each of them has an even uglier
-    clown costume than the last. They haven't pulled their
-    weapons out yet, as they see the active bomb under your
-    arm and don't want to set it off.
-  BRIDGE_HEREDOC
 
-  prompt()
-  action = gets.chomp()
-
+def the_bridge(action)
   if action == "throw the bomb"
     puts <<-THROW_BOMB_HEREDOC
       In a panic you throw the bomb at the group of Gothons
@@ -185,17 +152,8 @@ def the_bridge()
   end
 end
 
-def escape_pod()
-  puts <<-ESCAPE_POD_HEREDOC
-    You rush through the ship desperately trying to make it to
-    the escape pod before the whole ship explodes. It seems like
-    hardly any Gothons are on the ship, so your run is clear of
-    interference. You get to the chamber with the escape pods, and
-    now need to pick one to take. Some of them could be damaged
-    but you don't have time to look. There's 5 pods, which one
-    do you take?
-  ESCAPE_POD_HEREDOC
 
+def escape_pod()
   good_pod = rand(5)+1
   print "[pod #]>"
   guess = gets.chomp()
@@ -231,6 +189,58 @@ ROOMS = {
   :escape_pod => method(:escape_pod)
 }
 
+# heredocs can start with << or with <<-
+# if they start with <<, the ending delimeter must be in column 1.
+
+central_corridor_desc = <<-CENTRAL_CORRIDOR_HEREDOC
+    The Gothons of Planet Percal #25 have invaded your ship and destroyed
+    your entire crew. You are the last surviving member and your last
+    mission is to get the neutron destruct bomb from the Weapons Armory,
+    put it in the bridge, and blow the ship up after getting into an 
+    escape pod.
+
+    You're running down the central corridor to the Weapons Armory when
+    a Gothon jumps out, red scaly skin, dark grimy teeth, and evil clown costume
+    flowing around his hate filled body. He's blocking the door to the
+    Armory and about to pull a weapon to blast you.
+CENTRAL_CORRIDOR_HEREDOC
+
+bridge_desc = <<-BRIDGE_HEREDOC
+    You burst onto the Bridge with the neutron destruct bomb
+    under your arm and surprise 5 Gothons who are trying to
+    take control of the ship. Each of them has an even uglier
+    clown costume than the last. They haven't pulled their
+    weapons out yet, as they see the active bomb under your
+    arm and don't want to set it off.
+BRIDGE_HEREDOC
+
+laser_desc = <<-LASER_HEREDOC
+    You do a dive roll into the Weapon Armory, crouch and scan the room
+    for more Gothons that might be hiding. It's dead quiet, too quiet.
+    You stand up and run to the far side of the room and find the
+    neutron bomb in its container. There's a keypad lock on the box
+    and you need the code to get the bomb out. If you get the code
+    wrong 10 times then the lock closes forever and you can't get the bomb. The code is 3 digits.
+LASER_HEREDOC
+
+escape_pod_desc = <<-ESCAPE_POD_HEREDOC
+    You rush through the ship desperately trying to make it to
+    the escape pod before the whole ship explodes. It seems like
+    hardly any Gothons are on the ship, so your run is clear of
+    interference. You get to the chamber with the escape pods, and
+    now need to pick one to take. Some of them could be damaged
+    but you don't have time to look. There's 5 pods, which one
+    do you take?
+ESCAPE_POD_HEREDOC
+
+ROOM_DESCRIPTIONS = {
+  :central_corridor => central_corridor_desc,
+  :laser_weapon_armory => laser_desc,
+  :the_bridge => bridge_desc,
+  :escape_pod => escape_pod_desc
+}
+
+
 # runner runs the game loop.
 # parameter map is a dictionary of method names
 # parameter start is the initial method name
@@ -239,15 +249,28 @@ def runner(map, start)
 
   while true
     puts "\n---------"
+    puts ROOM_DESCRIPTIONS[next_one]
+
     # In the map dictionary use next_one as the key to look up a method name.
     # Assign method name to room.
     room = map[next_one]
-    # Call the method assigned to room. 
-    # When it returns, assign the return value to next_one.
-    next_one = room.call()
+
+    if ( next_one == :death ||
+         next_one == :escape_pod )
+      # this room doesn't need user input
+      next_one = room.call()
+    else
+      prompt()
+      action = gets.chomp()
+      # Call the method assigned to room. 
+      # When it returns, assign the return value to next_one.
+      next_one = room.call(action)
+    end
     # Continue while loop
   end
 end
 
+
 # start the game loop using the ROOMS dictionary in the central corridor.
 runner(ROOMS, :central_corridor)
+
