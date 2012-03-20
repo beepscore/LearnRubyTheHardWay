@@ -1,6 +1,15 @@
 #!/usr/bin/env ruby
+
 ## Animal is-a object (yes, sort of confusing) look at the extra credit
 class Animal
+  attr_accessor :vital_signs
+
+  def initialize()
+    # use ruby 1.9 shorter hash syntax
+    # note keys will be symbols e.g. :heart_rate
+    # http://logicalfriday.com/2011/06/20/i-dont-like-the-ruby-1-9-hash-syntax/
+    @vital_signs = { heart_rate: 80, temperature: 37, weight: 75 }
+  end
 
 end
 
@@ -9,10 +18,14 @@ end
 class Dog < Animal
 
   def initialize(name)
-    ## ??
+    # call super, which will call it's initialize()
+    super()
     @name = name
   end
 
+  def say
+    puts "bow-wow"
+  end
 end
 
 ## Cat is an Animal, it subclasses Animal
@@ -23,6 +36,9 @@ class Cat < Animal
     @name = name
   end
 
+  def say
+    puts "meow"
+  end
 end
 
 ## Person is a class
@@ -69,6 +85,7 @@ end
 
 ## rover is-a Dog. Also he is an Animal.
 rover = Dog.new("Rover")
+puts rover.vital_signs
 
 ## satan is a Cat. Also he is an Animal.
 satan = Cat.new("Satan")
